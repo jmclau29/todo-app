@@ -1,13 +1,14 @@
 import { projects } from "./HomeProjectLoad"
 
 const addProject = (projectTitle) => {
-    for (i = 0; i < projects.length; i++) {
+    for (let i = 0; i < projects.length; i++) {
         if (projects[i] === projectTitle) {
             console.log('that Project already exists!');
             return;
         }
     }
     projects.push(projectTitle);
+    projects.sort;
 }
 
 const removeProject = (projectTitle) => {
@@ -15,7 +16,7 @@ const removeProject = (projectTitle) => {
         console.log("You can't delete this project!");
         return;
     } else {
-        for (i = 0; i < projects.length; i++) {
+        for (let i = 0; i < projects.length; i++) {
             if (projectTitle === projects.length[i]) {
                 projects.splice(i, 1);
             }
@@ -23,4 +24,4 @@ const removeProject = (projectTitle) => {
     }
 }
 
-export { addProject, removeProject };
+export { projects, addProject, removeProject };
