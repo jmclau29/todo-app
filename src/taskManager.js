@@ -1,6 +1,6 @@
 import { projects } from "./projectManager";
 
-class Task {
+export class Task {
     constructor(title, description, dueDate, priority, project = 'Home') {
         this.title = title;
         this.description = description;
@@ -8,5 +8,11 @@ class Task {
         this.priority = priority;
         this.project = project;
     }
+
+    addTaskToTasks() {
+        tasks.push(this);
+    }
 }
+
+export const tasks = [];
 
