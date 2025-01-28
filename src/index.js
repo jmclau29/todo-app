@@ -6,13 +6,13 @@ import { initialDOMLoad } from "./initialDOMLoad";
 initialDOMLoad();
 console.log(projects);
 
-const newTask = new Task('Buy flowers', 'Buy flowers for my wife.', 'today', 1);
+const newTask = new Task('Buy flowers', 'Buy flowers for my wife.');
 console.log(newTask);
 
 newTask.addTaskToTasks();
 console.log(tasks);
 
-const newerTask = new Task('bruh', 'bruhscription', 'tomorrow', 2);
+const newerTask = new Task('bruh', 'bruhscription');
 console.log(newerTask);
 newerTask.addTaskToTasks();
 console.log(tasks);
