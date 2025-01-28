@@ -1,7 +1,7 @@
-import { projects } from "./projectManager";
+
 
 export class Task {
-    constructor(title, description, dueDate = new Date(), priority = 'Medium', project = 'Home') {
+    constructor(title, description, priority = 'Medium', project = 'Home', dueDate = new Date()) {
         this.title = title;
         this.description = description;
         this.dueDate = dueDate;
@@ -10,14 +10,19 @@ export class Task {
         this.isComplete = 'false';
     }
 
+    toggleComplete() {
+        this.isComplete = !this.isComplete;
+    }
+
     addTaskToTasks() {
         tasks.push(this);
     }
 
-    markComplete() {
-        this.isComplete = !this.isComplete;
+    changePriority(priority) {
+        this.priority = priority;
     }
 }
 
 export const tasks = [];
+export const priorityList = ['Low', 'Medium', 'High'];
 
