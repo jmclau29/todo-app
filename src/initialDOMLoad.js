@@ -1,4 +1,3 @@
-
 export function initialDOMLoad() {
     let containerDiv = document.querySelector(".container");
     const projectNav = document.createElement('nav');
@@ -10,3 +9,4 @@ export function initialDOMLoad() {
     containerDiv.appendChild(projectDisplay);
     projectDisplay.classList.add('display');    
 }
+
