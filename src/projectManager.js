@@ -5,24 +5,24 @@ export class Project {
         this.title = title;
     }
 
-    addProject = (projectTitle) => {
+    addProject = () => {
         for (let i = 0; i < projects.length; i++) {
-            if (projects[i] === projectTitle) {
+            if (projects[i] === this.title) {
                 console.log('that Project already exists!');
                 return;
             }
         }
-        projects.push(projectTitle);
+        projects.push(this.title);
         projects.sort;
     }
 
-    removeProject = (projectTitle) => {
-        if (projectTitle === 'Home') {
+    removeProject = () => {
+        if (this.title === 'Home') {
             console.log("You can't delete this project!");
             return;
         } else {
             for (let i = 0; i < projects.length; i++) {
-                if (projectTitle === projects.length[i]) {
+                if (this.title === projects.length[i]) {
                     projects.splice(i, 1);
                 }
             }

@@ -6,5 +6,11 @@ import { initialDOMLoad } from "./initialDOMLoad";
 initialDOMLoad();
 console.log(projects);
 
+
 const newTask = new Task('Buy flowers', 'Buy flowers for my wife.');
 newTask.addTaskToTasks();
+console.log(tasks);
+
+const newProject = new Project('School');
+newProject.addProject();
+console.log(newProject);
