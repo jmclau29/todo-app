@@ -1,16 +1,27 @@
 import { tasks } from "./taskManager";
 import { projects } from "./projectManager";
 
-const projectNav = document.querySelector('.navbar');
+//this UI module handles UI functionality. Basically, DOM manipulation.
 
-const renderNav = () => {
+export const interfaceManager = () => {
+    const projectNav = document.querySelector('.navbar');
     const projectNavList = document.createElement('ul');
     projectNav.appendChild(projectNavList);
-    for (let i = 0; i < projects.length; i++) {
-        let navListItem = document.createElement('li');
-        navListItem.textContent = projects[i];
-        projectNavList.appendChild(navListItem);
+
+    const makeNavbar = () => {
+        projectNavList.textContent = '';
+        for (let i = 0; i < projects.length; i++) {
+            let navListItem = document.createElement('li');
+            navListItem.classList.add(`${projects[i]}`);
+            navListItem.classList.add('navListItem');
+            navListItem.textContent = `${projects[i]}`;
+            projectNavList.appendChild(navListItem);
+        }
     }
+
+    return { makeNavbar };
 }
 
-export { renderNav }
+
+
+

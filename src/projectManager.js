@@ -5,7 +5,7 @@ export class Project {
         this.title = title;
     }
 
-    addProject = () => {
+    addProject() {
         for (let i = 0; i < projects.length; i++) {
             if (projects[i] === this.title) {
                 console.log('that Project already exists!');
@@ -16,7 +16,7 @@ export class Project {
         projects.sort;
     }
 
-    removeProject = () => {
+    removeProject() {
         if (this.title === 'Home') {
             console.log("You can't delete this project!");
             return;

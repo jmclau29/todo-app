@@ -2,10 +2,10 @@ import "./styles.css";
 import { projects, Project } from "./projectManager";
 import { Task, tasks } from "./taskManager";
 import { initialDOMLoad } from "./initialDOMLoad";
-import { renderNav } from "./UI";
+import { interfaceManager } from "./UI";
 
 initialDOMLoad();
-
+interfaceManager().makeNavbar();
 console.log(projects);
 
 
@@ -15,6 +15,6 @@ console.log(tasks);
 
 const newProject = new Project('School');
 newProject.addProject();
+interfaceManager().makeNavbar();
 console.log(newProject);
 
-renderNav();
