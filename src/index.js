@@ -5,7 +5,7 @@ import { initialDOMLoad } from "./initialDOMLoad";
 import { interfaceManager } from "./UI";
 
 initialDOMLoad();
-interfaceManager().makeNavbar();
+interfaceManager().renderNavbar();
 console.log(projects);
 
 
@@ -15,6 +15,6 @@ console.log(tasks);
 
 const newProject = new Project('School');
 newProject.addProject();
-interfaceManager().makeNavbar();
+interfaceManager().renderNavbar();
 console.log(newProject);
 

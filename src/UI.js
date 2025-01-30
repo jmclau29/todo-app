@@ -5,21 +5,30 @@ import { projects } from "./projectManager";
 
 export const interfaceManager = () => {
     const projectNav = document.querySelector('.navbar');
-    const projectNavList = document.createElement('ul');
-    projectNav.appendChild(projectNavList);
 
-    const makeNavbar = () => {
-        projectNavList.textContent = '';
+
+    const renderNavbar = () => {
+        clearNavList();
+        const projectNavList = document.createElement('ul');
+        projectNavList.setAttribute('id','nav-list');
+        projectNav.appendChild(projectNavList);
         for (let i = 0; i < projects.length; i++) {
             let navListItem = document.createElement('li');
-            navListItem.classList.add(`${projects[i]}`);
+            navListItem.setAttribute('id',`${projects[i]}`);
             navListItem.classList.add('navListItem');
             navListItem.textContent = `${projects[i]}`;
             projectNavList.appendChild(navListItem);
         }
     }
 
-    return { makeNavbar };
+    //clears the NavList so it can be rendered/updated.
+    const clearNavList = () => {
+        while (projectNav.firstChild) {
+            projectNav.removeChild(projectNav.firstChild);
+        }
+    }
+
+    return { renderNavbar };
 }
 
 
