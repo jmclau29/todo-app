@@ -4,9 +4,10 @@ import { projects } from "./projectManager";
 //this UI module handles UI functionality. Basically, DOM manipulation.
 
 export const interfaceManager = () => {
-    const projectNav = document.querySelector('.navbar');
+    const projectNav = document.querySelector('#navbar');
+    const display = document.querySelector('#display');
 
-
+    //renders the navbar in the DOM.
     const renderNavbar = () => {
         clearNavList();
         const projectNavList = document.createElement('ul');
@@ -28,7 +29,28 @@ export const interfaceManager = () => {
         }
     }
 
-    return { renderNavbar };
+    //a function to render the display for todos.
+    const renderDisplay = () => {
+        clearTaskList();
+        const taskList = document.createElement('ul');
+        display.append(taskList);
+
+        for (let i = 0; i < tasks.length; i++) {
+            let taskItem = document.createElement('li');
+            taskItem.setAttribute('id',`${tasks[i].title}`);
+            taskItem.classList.add('taskListItem');
+            taskItem.textContent = `Title: ${tasks[i].title}, description: ${tasks[i].description}, Due: ${tasks[i].dueDate}`;
+            taskList.appendChild(taskItem);
+        }
+    }
+
+    const clearTaskList = () => {
+        while (display.firstChild) {
+            display.removeChild(display.firstChild);
+        }
+    }
+
+    return { renderNavbar, renderDisplay };
 }
 
 
