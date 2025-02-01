@@ -3,6 +3,7 @@ export function initialDOMLoad() {
     const projectNav = document.createElement('nav');
     projectNav.setAttribute('id','navbar');
     containerDiv.appendChild(projectNav);
+    
 
     const projectDisplay = document.createElement('div');
     containerDiv.appendChild(projectDisplay);
