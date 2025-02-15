@@ -10,6 +10,7 @@ interfaceManager().renderDisplay();
 console.log(projects);
 
 
+//hardcoded stuff for testing.
 const newTask = new Task('Buy flowers', 'Buy flowers for my wife.');
 newTask.addTaskToTasks();
 console.log(tasks);
