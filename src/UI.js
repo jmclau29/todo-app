@@ -22,8 +22,15 @@ export const interfaceManager = () => {
             navListItem.setAttribute('id', `${projects[i]}`);
             navListItem.classList.add('navListItem');
             navListItem.textContent = `${projects[i]}`;
+
+            //add an event listener to the navListItem
+            navListItem.addEventListener('click', () => {filterTasks(projects[i])});
             projectNavList.appendChild(navListItem);
         }
+        let navListLastItem = document.createElement('button');
+        navListLastItem.textContent = 'Show all Tasks';
+        navListLastItem.addEventListener('click', () => {renderDisplay()});
+        projectNavList.appendChild(navListLastItem);
 
         //functionality to change projects
     }
@@ -66,7 +73,6 @@ export const interfaceManager = () => {
     //functionality for buttons to filter the tasks array down to by their category
     const filterTasks = (projectName) => {
         let displayArray = tasks.filter(task => task.project === projectName);
-        console.log(displayArray);
         renderDisplay(displayArray);
     }
 

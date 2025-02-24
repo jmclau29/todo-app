@@ -22,5 +22,3 @@ const newProject = new Project('School');
 newProject.addProject();
 interfaceManager().renderNavbar();
 console.log(newProject);
-
-interfaceManager().filterTasks('Home');

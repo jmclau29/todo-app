@@ -13,8 +13,8 @@ The User should be able to create new projects and choose which project the todo
 4. The application logic (creating new todos, setting todos as complete, changing todo priority etc.) needs to be separate from DOM manipulating logic. I separated them by making separate modules for tasks, projects, and DOM management. (in progress)
 
 5. UI should allow the user to
-    1. view all projects.
-    2. view all todos in each project.
+    1. view all projects. DONE
+    2. view all todos in each project. DONE
     3. expand a single todo to see/edit details.
     4. delete a todo.
 
