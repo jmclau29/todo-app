@@ -14,7 +14,7 @@ console.log(projects);
 const newTask = new Task('Buy flowers', 'Buy flowers for my wife.');
 newTask.addTaskToTasks();
 console.log(tasks);
-const newerTask = new Task('Buy flowers', 'Buy flowers for my husband.');
+const newerTask = new Task('Buy flowers', 'Buy flowers for my husband.', 'Medium', 'School');
 newerTask.addTaskToTasks();
 console.log(tasks);
 interfaceManager().renderDisplay();
@@ -23,3 +23,4 @@ newProject.addProject();
 interfaceManager().renderNavbar();
 console.log(newProject);
 
+interfaceManager().filterTasks('Home');

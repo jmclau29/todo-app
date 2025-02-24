@@ -6,7 +6,7 @@ import { projects } from "./projectManager";
 export const interfaceManager = () => {
     const projectNav = document.querySelector('#navbar');
     const display = document.querySelector('#display');
-    
+
 
     //renders the navbar in the DOM.
     const renderNavbar = () => {
@@ -36,7 +36,7 @@ export const interfaceManager = () => {
     }
 
     //a function to render the display for todos.
-    const renderDisplay = () => {
+    const renderDisplay = (value = tasks) => {
         clearTaskList();
 
         const displayTitle = document.createElement('h1');
@@ -45,14 +45,14 @@ export const interfaceManager = () => {
 
         const taskList = document.createElement('ul');
         display.append(taskList);
-
-        for (let i = 0; i < tasks.length; i++) {
+        for (let i = 0; i < value.length; i++) {
             let taskItem = document.createElement('li');
-            taskItem.setAttribute('id', `${tasks[i].title}`);
+            taskItem.setAttribute('id', `${value[i].title}`);
             taskItem.classList.add('taskListItem');
-            taskItem.textContent = `Title: ${tasks[i].title}, description: ${tasks[i].description}, Due: ${tasks[i].dueDate}, Priority: ${tasks[i].priority}, Project: ${tasks[i].project}`;
+            taskItem.textContent = `Title: ${value[i].title}, description: ${value[i].description}, Due: ${value[i].dueDate}, Priority: ${value[i].priority}, Project: ${value[i].project}`;
             taskList.appendChild(taskItem);
         }
+
     }
 
     const clearTaskList = () => {
@@ -66,7 +66,8 @@ export const interfaceManager = () => {
     //functionality for buttons to filter the tasks array down to by their category
     const filterTasks = (projectName) => {
         let displayArray = tasks.filter(task => task.project === projectName);
-        return displayArray;
+        console.log(displayArray);
+        renderDisplay(displayArray);
     }
 
     return { renderNavbar, renderDisplay, filterTasks };
