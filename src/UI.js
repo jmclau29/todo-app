@@ -1,5 +1,5 @@
 import { tasks } from "./taskManager";
-import { projects } from "./projectManager";
+import { Project, projects } from "./projectManager";
 
 //this UI module handles UI functionality. Basically, DOM manipulation.
 
@@ -19,18 +19,53 @@ export const interfaceManager = () => {
         projectNav.appendChild(projectNavList);
         for (let i = 0; i < projects.length; i++) {
             let navListItem = document.createElement('button');
+            navListItem.setAttribute('type', 'button');
+            navListItem.classList.add('project-nav-button')
             navListItem.setAttribute('id', `${projects[i]}`);
             navListItem.classList.add('navListItem');
             navListItem.textContent = `${projects[i]}`;
 
             //add an event listener to the navListItem
-            navListItem.addEventListener('click', () => {filterTasks(projects[i])});
+            navListItem.addEventListener('click', () => { filterTasks(projects[i]) });
             projectNavList.appendChild(navListItem);
         }
         let navListLastItem = document.createElement('button');
+        navListLastItem.setAttribute('type', 'button');
+        navListLastItem.setAttribute('id', 'show-all-tasks')
         navListLastItem.textContent = 'Show all Tasks';
-        navListLastItem.addEventListener('click', () => {renderDisplay()});
+        navListLastItem.addEventListener('click', () => { renderDisplay() });
         projectNavList.appendChild(navListLastItem);
+        let newProjectButton = document.createElement('button');
+        newProjectButton.setAttribute('type', 'button');
+        newProjectButton.textContent = 'Make a new Project';
+        newProjectButton.classList.add('newProjectButton');
+        projectNavList.appendChild(newProjectButton);
+
+        newProjectButton.addEventListener('click', (e) => {
+            if (e.target.classList.contains('newProjectButton')) {
+                newProjectButton.remove();
+                let newProjectInput = document.createElement('input');
+                newProjectInput.setAttribute('type', 'text');
+                newProjectInput.setAttribute('id', 'project-name');
+                projectNavList.appendChild(newProjectInput);
+                let newProjectSubmit = document.createElement('button');
+                newProjectSubmit.setAttribute('type', 'button');
+                newProjectSubmit.setAttribute('id', 'project-submit');
+                newProjectSubmit.textContent = 'Submit New Project';
+                projectNavList.appendChild(newProjectSubmit);
+
+                newProjectSubmit.addEventListener('click', (e) => {
+                    newProjectSubmit.remove();
+                    if (e.target.id === 'project-submit') {
+                        let newProject = new Project(`${newProjectInput.value}`);
+                        newProject.addProject();
+                        renderNavbar();
+                    }
+                })
+            }
+        });
+
+
 
         //functionality to change projects
     }
