@@ -54,23 +54,29 @@ export const interfaceManager = () => {
                 newProjectSubmit.textContent = 'Submit New Project';
                 projectNavList.appendChild(newProjectSubmit);
 
+                newProjectInput.addEventListener('keypress', (e) => {
+                    if (e.key === "Enter") {
+                        newProjectSubmit.click();
+                    }
+                })
+
                 newProjectSubmit.addEventListener('click', (e) => {
+                    if (newProjectInput.value.trim() == '' || newProjectInput.value == newProjectInput.defaultValue) {
+                        console.log('bad project name');
+                        return;
+                    }
                     newProjectSubmit.remove();
                     if (e.target.id === 'project-submit') {
                         let newProject = new Project(`${newProjectInput.value}`);
                         newProject.addProject();
                         renderNavbar();
+                        console.log(projects);
                     }
                 })
             }
         });
-
-
-
-        //functionality to change projects
     }
 
-    //clears the NavList so it can be rendered/updated.
     const clearNavList = () => {
         while (projectNav.firstChild) {
             projectNav.removeChild(projectNav.firstChild);
@@ -103,7 +109,7 @@ export const interfaceManager = () => {
         }
     }
 
-    //build an input html that helps input new tasks into the current project.
+    //function to remove html from the page when projects are removed from the project array.
 
     //functionality for buttons to filter the tasks array down to by their category
     const filterTasks = (projectName) => {
