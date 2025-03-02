@@ -51,6 +51,12 @@ body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    height: 100vh;
+}
+
+button {
+  font-family: sans-serif;
+  cursor: pointer;
 }
 
 .container {
@@ -69,19 +75,23 @@ body {
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: auto;
-}
-
-#nav-list > button.project-nav-button, #show-all-tasks {
-  background: none;
-  border: none;
-  font-size: 1.5rem;
-  cursor: grab;
+  justify-items: center;
 }
 
 
+
+button.project-nav-button, #show-all-tasks {
+  margin: 5px;
+  font-size: 1.2rem;
+}
+
+.delete-project-button {
+  background-color: #FFC0CB;
+  border: solid 1px red;
+  font-family: monospace;
+}
 
 #display {
-
-    justify-items: center;
+  justify-items: center;
 }
 

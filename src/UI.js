@@ -14,27 +14,50 @@ export const interfaceManager = () => {
         const projectNavTitle = document.createElement('h1');
         projectNavTitle.textContent = 'Projects';
         projectNav.appendChild(projectNavTitle);
+
         const projectNavList = document.createElement('div');
         projectNavList.setAttribute('id', 'nav-list');
         projectNav.appendChild(projectNavList);
+
         for (let i = 0; i < projects.length; i++) {
+            let navListDiv = document.createElement('div');
+            navListDiv.setAttribute('id', `${projects[i]}`);
+            navListDiv.setAttribute('class', 'navlist-div');
+            projectNavList.appendChild(navListDiv)
+
+            //add a button to allow deletion of a project from the navlist
+            let deleteProjectButton = document.createElement('button');
+            deleteProjectButton.setAttribute('type', 'button');
+            deleteProjectButton.classList.add('delete-project-button');
+            deleteProjectButton.textContent = 'x';
+
+            //add an event listener for deleteButtonProject
+            deleteProjectButton.addEventListener('click', (e) => {
+                if (e.target.classList.contains('delete-project-button')) {
+                    
+                    renderNavbar();
+                }
+            })
+            
+
             let navListItem = document.createElement('button');
             navListItem.setAttribute('type', 'button');
             navListItem.classList.add('project-nav-button')
-            navListItem.setAttribute('id', `${projects[i]}`);
-            navListItem.classList.add('navListItem');
             navListItem.textContent = `${projects[i]}`;
 
             //add an event listener to the navListItem
             navListItem.addEventListener('click', () => { filterTasks(projects[i]) });
-            projectNavList.appendChild(navListItem);
+            navListDiv.appendChild(navListItem);
+            navListDiv.appendChild(deleteProjectButton);
         }
+
         let navListLastItem = document.createElement('button');
         navListLastItem.setAttribute('type', 'button');
         navListLastItem.setAttribute('id', 'show-all-tasks')
         navListLastItem.textContent = 'Show all Tasks';
         navListLastItem.addEventListener('click', () => { renderDisplay() });
         projectNavList.appendChild(navListLastItem);
+
         let newProjectButton = document.createElement('button');
         newProjectButton.setAttribute('type', 'button');
         newProjectButton.textContent = 'Make a new Project';
@@ -44,10 +67,12 @@ export const interfaceManager = () => {
         newProjectButton.addEventListener('click', (e) => {
             if (e.target.classList.contains('newProjectButton')) {
                 newProjectButton.remove();
+
                 let newProjectInput = document.createElement('input');
                 newProjectInput.setAttribute('type', 'text');
                 newProjectInput.setAttribute('id', 'project-name');
                 projectNavList.appendChild(newProjectInput);
+
                 let newProjectSubmit = document.createElement('button');
                 newProjectSubmit.setAttribute('type', 'button');
                 newProjectSubmit.setAttribute('id', 'project-submit');
@@ -67,7 +92,7 @@ export const interfaceManager = () => {
                     }
                     newProjectSubmit.remove();
                     if (e.target.id === 'project-submit') {
-                        let newProject = new Project(`${newProjectInput.value}`);
+                        let newProject = new Project(`${newProjectInput.value.trim()}`);
                         newProject.addProject();
                         renderNavbar();
                         console.log(projects);
