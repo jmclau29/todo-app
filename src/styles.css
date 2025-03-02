@@ -95,3 +95,12 @@ button.project-nav-button, #show-all-tasks {
   justify-items: center;
 }
 
+#new-task-input-div {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto;
+}
+
+.input-field {
+  margin: 5px;
+}

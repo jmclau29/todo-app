@@ -1,4 +1,4 @@
-import { tasks, priorityList } from "./taskManager";
+import { Task, tasks, priorityList } from "./taskManager";
 import { Project, projects } from "./projectManager";
 
 //this UI module handles UI functionality. Basically, DOM manipulation.
@@ -136,28 +136,32 @@ export const interfaceManager = () => {
             if (e.target.id === 'new-task-button') {
                 newTaskButton.remove();
                 let newTaskInputDiv = document.createElement('div');
-                newTaskInputDiv.classList.add('new-task-input-div');
+                newTaskInputDiv.id = 'new-task-input-div';
                 newTaskContainer.appendChild(newTaskInputDiv);
 
                 let newTaskTitleInput = document.createElement('input');
                 newTaskTitleInput.setAttribute('id', 'new-task-title');
+                newTaskTitleInput.classList.add('input-field');
                 newTaskTitleInput.setAttribute('type', 'text');
                 newTaskTitleInput.setAttribute('placeholder', 'Title');
                 newTaskInputDiv.appendChild(newTaskTitleInput);
 
                 let newTaskDescriptionInput = document.createElement('input');
                 newTaskDescriptionInput.setAttribute('id', 'new-task-description');
+                newTaskDescriptionInput.classList.add('input-field');
                 newTaskDescriptionInput.setAttribute('type', 'text');
                 newTaskDescriptionInput.setAttribute('placeholder', 'Description');
                 newTaskInputDiv.appendChild(newTaskDescriptionInput);
 
                 let newtaskDueDate = document.createElement('input');
                 newtaskDueDate.setAttribute('id', 'new-task-due-date');
+                newtaskDueDate.classList.add('input-field')
                 newtaskDueDate.setAttribute('type', 'date');
                 newTaskInputDiv.appendChild(newtaskDueDate);
 
                 let newTaskPriority = document.createElement('select');
                 newTaskPriority.setAttribute('id', 'priority-select');
+                newTaskPriority.classList.add('input-field');
                 for (let i = 0; i < priorityList.length; i++) {
                     let option = document.createElement('option');
                     option.value = priorityList[i];
@@ -168,6 +172,7 @@ export const interfaceManager = () => {
 
                 let newTaskProject = document.createElement('select');
                 newTaskProject.setAttribute('id', 'new-task-project');
+                newTaskProject.classList.add('input-field');
                 for (let i = 0; i < projects.length; i++) {
                     let option = document.createElement('option');
                     option.value = projects[i].title;
@@ -175,6 +180,28 @@ export const interfaceManager = () => {
                     newTaskProject.appendChild(option);
                 }
                 newTaskInputDiv.appendChild(newTaskProject);
+
+                let newTaskSubmit = document.createElement('button');
+                newTaskSubmit.setAttribute('id', 'new-task-submit');
+                newTaskSubmit.classList.add('input-field');
+                newTaskSubmit.setAttribute('type', 'button');
+                newTaskSubmit.textContent = 'Create New Task';
+                newTaskInputDiv.appendChild(newTaskSubmit);
+
+                newTaskSubmit.addEventListener('click', (e) => {
+                    if (e.target.id === 'new-task-submit') {
+                        let title = newTaskTitleInput.value.trim();
+                        let description = newTaskDescriptionInput.value.trim();
+                        let dueDate = newtaskDueDate.value;
+                        let priority = newTaskPriority.value;
+                        let project = newTaskProject.value;
+
+                        let task = new Task(title, description, dueDate, priority, project);
+                        console.log(task);
+                        //task.addTasktoTasks();
+                        console.log(tasks);
+                    }
+                })
             }
         })
 
