@@ -104,6 +104,8 @@ export const interfaceManager = () => {
                 })
             }
         });
+        let homeDeleteButton = document.getElementById('Home').lastChild;
+        homeDeleteButton.remove();
     }
 
     const clearNavList = () => {

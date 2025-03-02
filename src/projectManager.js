@@ -17,18 +17,14 @@ export class Project {
     }
 
     removeProject() {
-        if (this.title === 'Home') {
-            console.log("You can't delete this project!");
-            return;
-        } else {
-            for (let i = 0; i < projects.length; i++) {
-                if (this.title === projects[i].title) {
-                    projects.splice(i, 1);
-                }
+        for (let i = 0; i < projects.length; i++) {
+            if (this.title === projects[i].title) {
+                projects.splice(i, 1);
             }
         }
     }
 }
+
 
 let initialProject = new Project('Home');
 projects.push(initialProject);
