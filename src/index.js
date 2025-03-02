@@ -8,13 +8,11 @@ initialDOMLoad();
 interfaceManager().renderNavbar();
 interfaceManager().renderDisplay();
 console.log(projects);
+console.log(tasks);
 
 
 //hardcoded stuff for testing.
 const newTask = new Task('Buy flowers', 'Buy flowers for my wife.');
 newTask.addTaskToTasks();
 interfaceManager().renderDisplay();
-const newProject = new Project('School');
-newProject.addProject();
-
 interfaceManager().renderNavbar();

@@ -1,4 +1,4 @@
-import { tasks } from "./taskManager";
+import { tasks, priorityList } from "./taskManager";
 import { Project, projects } from "./projectManager";
 
 //this UI module handles UI functionality. Basically, DOM manipulation.
@@ -122,6 +122,62 @@ export const interfaceManager = () => {
         displayTitle.textContent = 'Tasks';
         display.appendChild(displayTitle);
 
+        const newTaskContainer = document.createElement('div');
+        newTaskContainer.setAttribute('id', 'new-task-container');
+        display.appendChild(newTaskContainer);
+
+        const newTaskButton = document.createElement('button');
+        newTaskButton.setAttribute('type', 'button');
+        newTaskButton.setAttribute('id', 'new-task-button');
+        newTaskButton.textContent = 'New Task';
+        newTaskContainer.appendChild(newTaskButton);
+
+        newTaskButton.addEventListener('click', (e) => {
+            if (e.target.id === 'new-task-button') {
+                newTaskButton.remove();
+                let newTaskInputDiv = document.createElement('div');
+                newTaskInputDiv.classList.add('new-task-input-div');
+                newTaskContainer.appendChild(newTaskInputDiv);
+
+                let newTaskTitleInput = document.createElement('input');
+                newTaskTitleInput.setAttribute('id', 'new-task-title');
+                newTaskTitleInput.setAttribute('type', 'text');
+                newTaskTitleInput.setAttribute('placeholder', 'Title');
+                newTaskInputDiv.appendChild(newTaskTitleInput);
+
+                let newTaskDescriptionInput = document.createElement('input');
+                newTaskDescriptionInput.setAttribute('id', 'new-task-description');
+                newTaskDescriptionInput.setAttribute('type', 'text');
+                newTaskDescriptionInput.setAttribute('placeholder', 'Description');
+                newTaskInputDiv.appendChild(newTaskDescriptionInput);
+
+                let newtaskDueDate = document.createElement('input');
+                newtaskDueDate.setAttribute('id', 'new-task-due-date');
+                newtaskDueDate.setAttribute('type', 'date');
+                newTaskInputDiv.appendChild(newtaskDueDate);
+
+                let newTaskPriority = document.createElement('select');
+                newTaskPriority.setAttribute('id', 'priority-select');
+                for (let i = 0; i < priorityList.length; i++) {
+                    let option = document.createElement('option');
+                    option.value = priorityList[i];
+                    option.text = priorityList[i];
+                    newTaskPriority.appendChild(option);
+                }
+                newTaskInputDiv.appendChild(newTaskPriority);
+
+                let newTaskProject = document.createElement('select');
+                newTaskProject.setAttribute('id', 'new-task-project');
+                for (let i = 0; i < projects.length; i++) {
+                    let option = document.createElement('option');
+                    option.value = projects[i].title;
+                    option.text = projects[i].title;
+                    newTaskProject.appendChild(option);
+                }
+                newTaskInputDiv.appendChild(newTaskProject);
+            }
+        })
+
         const taskList = document.createElement('ul');
         display.append(taskList);
         for (let i = 0; i < value.length; i++) {
@@ -132,6 +188,7 @@ export const interfaceManager = () => {
             taskList.appendChild(taskItem);
         }
 
+        
     }
 
     const clearTaskList = () => {
@@ -139,6 +196,8 @@ export const interfaceManager = () => {
             display.removeChild(display.firstChild);
         }
     }
+
+
 
     //function to remove html from the page when projects are removed from the project array.
 
