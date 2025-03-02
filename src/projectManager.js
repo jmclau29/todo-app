@@ -1,4 +1,4 @@
-import { projects } from "./HomeProjectLoad"
+let projects = [];
 
 export class Project {
     constructor(title) {
@@ -12,7 +12,7 @@ export class Project {
                 return;
             }
         }
-        projects.push(this.title);
+        projects.push(this);
         projects.sort;
     }
 
@@ -22,12 +22,15 @@ export class Project {
             return;
         } else {
             for (let i = 0; i < projects.length; i++) {
-                if (this.title === projects.length[i]) {
+                if (this.title === projects[i].title) {
                     projects.splice(i, 1);
                 }
             }
         }
     }
 }
+
+let initialProject = new Project('Home');
+projects.push(initialProject);
 
 export { projects };

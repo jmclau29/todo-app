@@ -21,7 +21,7 @@ export const interfaceManager = () => {
 
         for (let i = 0; i < projects.length; i++) {
             let navListDiv = document.createElement('div');
-            navListDiv.setAttribute('id', `${projects[i]}`);
+            navListDiv.setAttribute('id', `${projects[i].title}`);
             navListDiv.setAttribute('class', 'navlist-div');
             projectNavList.appendChild(navListDiv)
 
@@ -34,7 +34,11 @@ export const interfaceManager = () => {
             //add an event listener for deleteButtonProject
             deleteProjectButton.addEventListener('click', (e) => {
                 if (e.target.classList.contains('delete-project-button')) {
-                    
+                    for (let i = 0; i < projects.length; i++) {
+                        if (e.target.parentElement.id === projects[i].title) {
+                            projects[i].removeProject();
+                        }
+                    }
                     renderNavbar();
                 }
             })
@@ -43,7 +47,7 @@ export const interfaceManager = () => {
             let navListItem = document.createElement('button');
             navListItem.setAttribute('type', 'button');
             navListItem.classList.add('project-nav-button')
-            navListItem.textContent = `${projects[i]}`;
+            navListItem.textContent = `${projects[i].title}`;
 
             //add an event listener to the navListItem
             navListItem.addEventListener('click', () => { filterTasks(projects[i]) });
