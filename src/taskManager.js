@@ -17,15 +17,6 @@ export class Task {
     addTaskToTasks() {
         tasks.push(this);
     }
-
-    changePriority(priority) {
-        this.priority = priority;
-    }
-
-    changeDate(day, month, year) {
-        let date = new Date(`${year}, ${month}, ${day}`);
-        this.dueDate = date;
-    }
 }
 
 export const tasks = [];

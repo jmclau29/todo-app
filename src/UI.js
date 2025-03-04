@@ -135,6 +135,7 @@ export const interfaceManager = () => {
         newTaskButton.addEventListener('click', (e) => {
             if (e.target.id === 'new-task-button') {
                 newTaskButton.remove();
+
                 let newTaskInputDiv = document.createElement('div');
                 newTaskInputDiv.id = 'new-task-input-div';
                 newTaskContainer.appendChild(newTaskInputDiv);
@@ -197,7 +198,7 @@ export const interfaceManager = () => {
                 for (let i = 0; i < projects.length; i++) {
                     let option = document.createElement('option');
                     option.value = projects[i].title;
-                    option.text = projects[i].title;
+                    option.text = 'Project: ' + projects[i].title;
                     newTaskProject.appendChild(option);
                 }
                 newTaskInputDiv.appendChild(newTaskProject);
@@ -239,7 +240,8 @@ export const interfaceManager = () => {
         taskListContainer.setAttribute('id', 'task-list-container');
         display.appendChild(taskListContainer);
 
-        
+        // START HERE
+        //change the display for the task to make it an expandable box, which can manipulate the title, description, duedate, priority, and project
         for (let i = 0; i < value.length; i++) {
             let taskItem = document.createElement('div');
             taskItem.setAttribute('id', `${value[i].title}`);
