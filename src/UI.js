@@ -42,7 +42,7 @@ export const interfaceManager = () => {
                     renderNavbar();
                 }
             })
-            
+
 
             let navListItem = document.createElement('button');
             navListItem.setAttribute('type', 'button');
@@ -50,7 +50,7 @@ export const interfaceManager = () => {
             navListItem.textContent = `${projects[i].title}`;
 
             //add an event listener to the navListItem
-            navListItem.addEventListener('click', () => { filterTasks(projects[i]) });
+            navListItem.addEventListener('click', () => { filterTasks(projects[i].title) });
             navListDiv.appendChild(navListItem);
             navListDiv.appendChild(deleteProjectButton);
         }
@@ -153,11 +153,32 @@ export const interfaceManager = () => {
                 newTaskDescriptionInput.setAttribute('placeholder', 'Description');
                 newTaskInputDiv.appendChild(newTaskDescriptionInput);
 
+                //get today's date for the min
+                let today = new Date();
+                let dd = today.getDate();
+                let mm = today.getMonth() + 1;
+                let yyyy = today.getFullYear(); //this whole thing is super cool!
+
+                if (dd < 10) {
+                    dd = '0' + dd;
+                }
+
+                if (mm < 10) {
+                    mm = '0' + mm;
+                }
+
+                today = `${yyyy}-${mm}-${dd}`;
+                
+
                 let newtaskDueDate = document.createElement('input');
                 newtaskDueDate.setAttribute('id', 'new-task-due-date');
                 newtaskDueDate.classList.add('input-field')
                 newtaskDueDate.setAttribute('type', 'date');
+                newtaskDueDate.setAttribute('min', today);
+                newtaskDueDate.setAttribute('value', today);
                 newTaskInputDiv.appendChild(newtaskDueDate);
+
+
 
                 let newTaskPriority = document.createElement('select');
                 newTaskPriority.setAttribute('id', 'priority-select');
@@ -165,7 +186,7 @@ export const interfaceManager = () => {
                 for (let i = 0; i < priorityList.length; i++) {
                     let option = document.createElement('option');
                     option.value = priorityList[i];
-                    option.text = priorityList[i];
+                    option.text = 'Priority: ' + priorityList[i];
                     newTaskPriority.appendChild(option);
                 }
                 newTaskInputDiv.appendChild(newTaskPriority);
@@ -196,26 +217,37 @@ export const interfaceManager = () => {
                         let priority = newTaskPriority.value;
                         let project = newTaskProject.value;
 
-                        let task = new Task(title, description, dueDate, priority, project);
-                        console.log(task);
-                        //task.addTasktoTasks();
+                        if (title == '' || title == newTaskTitleInput.defaultValue) {
+                            console.log('bad title');
+                            return;
+                        }
+                        if (description == '' || description == newTaskDescriptionInput.defaultValue) {
+                            console.log('bad task description');
+                            return;
+                        }
+
+                        let newTask = new Task(title, description, dueDate, priority, project);
+                        newTask.addTaskToTasks();
                         console.log(tasks);
                     }
+                    renderDisplay();
                 })
             }
         })
 
-        const taskList = document.createElement('ul');
-        display.append(taskList);
+        const taskListContainer = document.createElement('div');
+        taskListContainer.setAttribute('id', 'task-list-container');
+        display.appendChild(taskListContainer);
+
+        
         for (let i = 0; i < value.length; i++) {
-            let taskItem = document.createElement('li');
+            let taskItem = document.createElement('div');
             taskItem.setAttribute('id', `${value[i].title}`);
             taskItem.classList.add('taskListItem');
             taskItem.textContent = `Title: ${value[i].title}, description: ${value[i].description}, Due: ${value[i].dueDate}, Priority: ${value[i].priority}, Project: ${value[i].project}`;
-            taskList.appendChild(taskItem);
+            taskListContainer.appendChild(taskItem);
         }
 
-        
     }
 
     const clearTaskList = () => {
@@ -226,7 +258,6 @@ export const interfaceManager = () => {
 
 
 
-    //function to remove html from the page when projects are removed from the project array.
 
     //functionality for buttons to filter the tasks array down to by their category
     const filterTasks = (projectName) => {
