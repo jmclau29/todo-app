@@ -169,7 +169,7 @@ export const interfaceManager = () => {
                 }
 
                 today = `${yyyy}-${mm}-${dd}`;
-                
+
 
                 let newtaskDueDate = document.createElement('input');
                 newtaskDueDate.setAttribute('id', 'new-task-due-date');
@@ -244,12 +244,36 @@ export const interfaceManager = () => {
         //change the display for the task to make it an expandable box, which can manipulate the title, description, duedate, priority, and project
         for (let i = 0; i < value.length; i++) {
             let taskItem = document.createElement('div');
-            taskItem.setAttribute('id', `${value[i].title}`);
-            taskItem.classList.add('taskListItem');
-            taskItem.textContent = `Title: ${value[i].title}, description: ${value[i].description}, Due: ${value[i].dueDate}, Priority: ${value[i].priority}, Project: ${value[i].project}`;
+            taskItem.classList.add('task-name');
+            if (value[i].dueDate) {
+                taskItem.textContent = `${value[i].title}, due ${value[i].dueDate}`;
+                // below meant for editing overdue task's with a red dueDate, continue later
+               /*  if (value[i].dueDate > today) {
+                    taskItem.classList.add('overdue');
+                } */
+            } else {
+                taskItem.textContent = `${value[i].title}`;
+            }
             taskListContainer.appendChild(taskItem);
-        }
 
+            let taskContent = document.createElement('div');
+            taskContent.classList.add('content-div', 'content-hidden');
+            taskListContainer.appendChild(taskContent);
+
+            let taskDescription = document.createElement('p');
+            taskDescription.textContent = `${value[i].description}`;
+            taskContent.appendChild(taskDescription);
+            let taskPriority = document.createElement('p');
+            taskPriority.textContent = `Priority: ${value[i].priority}`;
+            taskContent.appendChild(taskPriority);
+            let taskProject = document.createElement('p');
+            taskProject.textContent = `Project: ${value[i].project}`;
+            taskContent.appendChild(taskProject);
+
+            taskItem.addEventListener('click', () => {
+                taskContent.classList.toggle('content-hidden');
+            });
+        }
     }
 
     const clearTaskList = () => {

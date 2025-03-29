@@ -1,57 +1,79 @@
 /* 1. Use a more-intuitive box-sizing model */
-*, *::before, *::after {
-    box-sizing: border-box;
-  }
-  
-  /* 2. Remove default margin */
-  * {
-    margin: 0;
-  }
-  
-  body {
-    /* 3. Add accessible line-height */
-    line-height: 1.5;
-    /* 4. Improve text rendering */
-    -webkit-font-smoothing: antialiased;
-  }
-  
-  /* 5. Improve media defaults */
-  img, picture, video, canvas, svg {
-    display: block;
-    max-width: 100%;
-  }
-  
-  /* 6. Inherit fonts for form controls */
-  input, button, textarea, select {
-    font: inherit;
-  }
-  
-  /* 7. Avoid text overflows */
-  p, h1, h2, h3, h4, h5, h6 {
-    overflow-wrap: break-word;
-  }
-  
-  /* 8. Improve line wrapping */
-  p {
-    text-wrap: pretty;
-  }
-  h1, h2, h3, h4, h5, h6 {
-    text-wrap: balance;
-  }
-  
-  /*
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* 2. Remove default margin */
+* {
+  margin: 0;
+}
+
+body {
+  /* 3. Add accessible line-height */
+  line-height: 1.5;
+  /* 4. Improve text rendering */
+  -webkit-font-smoothing: antialiased;
+}
+
+/* 5. Improve media defaults */
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+/* 6. Inherit fonts for form controls */
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+/* 7. Avoid text overflows */
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
+
+/* 8. Improve line wrapping */
+p {
+  text-wrap: pretty;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  text-wrap: balance;
+}
+
+/*
     9. Create a root stacking context
   */
-  #root, #__next {
-    isolation: isolate;
-  }
+#root,
+#__next {
+  isolation: isolate;
+}
 
 
 body {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    height: 100vh;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  height: 100vh;
 }
 
 button {
@@ -60,15 +82,15 @@ button {
 }
 
 .container {
-    display: grid;
-    grid-template-columns: 1fr 4fr;
-    grid-template-rows: 1fr;
-    gap: 10px;
-    
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+  grid-template-rows: 1fr;
+  gap: 10px;
+
 }
 
 #navbar {
-    justify-items: center;
+  justify-items: center;
 }
 
 #nav-list {
@@ -80,7 +102,8 @@ button {
 
 
 
-button.project-nav-button, #show-all-tasks {
+button.project-nav-button,
+#show-all-tasks {
   margin: 5px;
   font-size: 1.2rem;
 }
@@ -103,4 +126,42 @@ button.project-nav-button, #show-all-tasks {
 
 .input-field {
   margin: 5px;
+}
+
+#task-list-container {
+  display: flex;
+  flex-direction: column;
+  margin-top: 1rem;
+}
+
+.task-name {
+  font-family:'Courier New', Courier, monospace;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.task-name:hover {
+  font-style: italic;
+  cursor: pointer;
+}
+
+p {
+  font-size: 1rem;
+  font-weight: 100;
+}
+
+.class-name {
+  align-items: left;
+}
+
+.content-div {
+  display: block;
+}
+
+.content-div.content-hidden {
+  display: none;
+}
+
+.overdue {
+  color: red;
 }
