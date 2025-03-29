@@ -132,10 +132,12 @@ button.project-nav-button,
   display: flex;
   flex-direction: column;
   margin-top: 1rem;
+  font-family:'Courier New', Courier, monospace;
+  width: 90%;
 }
 
 .task-name {
-  font-family:'Courier New', Courier, monospace;
+  
   font-size: 1.5rem;
   font-weight: 600;
 }
@@ -156,6 +158,7 @@ p {
 
 .content-div {
   display: block;
+  margin-left: 1rem;
 }
 
 .content-div.content-hidden {
