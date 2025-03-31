@@ -100,8 +100,6 @@ button {
   justify-items: center;
 }
 
-
-
 button.project-nav-button,
 #show-all-tasks {
   margin: 5px;
@@ -136,13 +134,17 @@ button.project-nav-button,
   width: 90%;
 }
 
-.task-name {
-  
+.task-item {
+  list-style: none;
   font-size: 1.5rem;
   font-weight: 600;
+  background-color: #f1f1f1;
+  border-radius: 10px;
+  padding: 10px;
+  margin: 5px;
 }
 
-.task-name:hover {
+.task-item:hover {
   font-style: italic;
   cursor: pointer;
 }
@@ -150,15 +152,16 @@ button.project-nav-button,
 p {
   font-size: 1rem;
   font-weight: 100;
-}
-
-.class-name {
-  align-items: left;
+  font-style: normal;
 }
 
 .content-div {
   display: block;
   margin-left: 1rem;
+  background-color: #ccc;
+  border-radius: 10px;
+  padding: 10px;
+  margin: 5px;
 }
 
 .content-div.content-hidden {

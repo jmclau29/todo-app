@@ -236,15 +236,15 @@ export const interfaceManager = () => {
             }
         })
 
-        const taskListContainer = document.createElement('div');
+        const taskListContainer = document.createElement('ul');
         taskListContainer.setAttribute('id', 'task-list-container');
         display.appendChild(taskListContainer);
 
         // START HERE
         //change the display for the task to make it an expandable box, which can manipulate the title, description, duedate, priority, and project
         for (let i = 0; i < value.length; i++) {
-            let taskItem = document.createElement('div');
-            taskItem.classList.add('task-name');
+            let taskItem = document.createElement('li');
+            taskItem.classList.add('task-item');
             if (value[i].dueDate) {
                 taskItem.textContent = `${value[i].title}, due ${value[i].dueDate}`;
                 // below meant for editing overdue task's with a red dueDate, continue later
@@ -258,7 +258,7 @@ export const interfaceManager = () => {
 
             let taskContent = document.createElement('div');
             taskContent.classList.add('content-div', 'content-hidden');
-            taskListContainer.appendChild(taskContent);
+            taskItem.appendChild(taskContent);
 
             let taskDescription = document.createElement('p');
             taskDescription.textContent = `${value[i].description}`;
