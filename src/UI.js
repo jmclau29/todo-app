@@ -261,7 +261,7 @@ export const interfaceManager = () => {
             taskItem.appendChild(taskContent);
 
             let taskDescription = document.createElement('p');
-            taskDescription.textContent = `${value[i].description}`;
+            taskDescription.textContent = `Description: ${value[i].description}`;
             taskContent.appendChild(taskDescription);
             let taskPriority = document.createElement('p');
             taskPriority.textContent = `Priority: ${value[i].priority}`;
@@ -270,8 +270,10 @@ export const interfaceManager = () => {
             taskProject.textContent = `Project: ${value[i].project}`;
             taskContent.appendChild(taskProject);
 
-            taskItem.addEventListener('click', () => {
-                taskContent.classList.toggle('content-hidden');
+            taskItem.addEventListener('click', (e) => {
+                if (e.target === taskItem) {
+                    taskContent.classList.toggle('content-hidden');
+                }
             });
         }
     }
