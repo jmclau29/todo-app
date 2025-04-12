@@ -6,20 +6,25 @@ export class Project {
     }
 
     addProject() {
+        if (this.title === 'Home') {
+            console.log('You cannot make this project!');
+            return;
+        }
         for (let i = 0; i < projects.length; i++) {
-            if (projects[i] === this.title) {
-                console.log('that Project already exists!');
+            if (this.title === projects[i].title) {
+                console.log('You cannot make this project!');
                 return;
             }
         }
         projects.push(this);
-        projects.sort;
     }
 
     removeProject() {
         for (let i = 0; i < projects.length; i++) {
             if (this.title === projects[i].title) {
                 projects.splice(i, 1);
+                console.log(projects);
+                return;
             }
         }
     }
