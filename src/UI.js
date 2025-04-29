@@ -248,9 +248,9 @@ export const interfaceManager = () => {
             if (value[i].dueDate) {
                 taskItem.textContent = `${value[i].title}, due ${value[i].dueDate}`;
                 // below meant for editing overdue task's with a red dueDate, continue later
-               /*  if (value[i].dueDate > today) {
-                    taskItem.classList.add('overdue');
-                } */
+                /*  if (value[i].dueDate > today) {
+                     taskItem.classList.add('overdue');
+                 } */
             } else {
                 taskItem.textContent = `${value[i].title}`;
             }
@@ -275,6 +275,113 @@ export const interfaceManager = () => {
                     taskContent.classList.toggle('content-hidden');
                 }
             });
+
+            //code to make the information in the task editable
+            let editButton = document.createElement('button');
+            editButton.classList.add('edit-button');
+            editButton.setAttribute('id', `${tasks[i].title}-edit-button`)
+            editButton.textContent = 'Edit task';
+            taskContent.appendChild(editButton);
+
+            editButton.addEventListener('click', (e) => {
+                editButton.remove();
+
+                let editField = document.createElement('div');
+                editField.id = 'edit-field';
+                taskContent.appendChild(editField);
+
+                let editTitle = document.createElement('input');
+                editTitle.setAttribute('id', 'edit-task-title');
+                editTitle.classList.add('input-field');
+                editTitle.setAttribute('type', 'text');
+                editTitle.setAttribute('placeholder', 'Title');
+                editField.appendChild(editTitle);
+
+                let editDescription = document.createElement('input');
+                editDescription.setAttribute('id', 'edit-task-description');
+                editDescription.classList.add('input-field');
+                editDescription.setAttribute('type', 'text');
+                editDescription.setAttribute('placeholder', 'Description');
+                editField.appendChild(editDescription);
+
+                //get today's date for the min
+                let today = new Date();
+                let dd = today.getDate();
+                let mm = today.getMonth() + 1;
+                let yyyy = today.getFullYear(); //this whole thing is super cool!
+
+                if (dd < 10) {
+                    dd = '0' + dd;
+                }
+
+                if (mm < 10) {
+                    mm = '0' + mm;
+                }
+
+                today = `${yyyy}-${mm}-${dd}`;
+
+
+                let editdueDate = document.createElement('input');
+                editdueDate.setAttribute('id', 'edit-task-due-date');
+                editdueDate.classList.add('input-field')
+                editdueDate.setAttribute('type', 'date');
+                editdueDate.setAttribute('min', today);
+                editdueDate.setAttribute('value', today);
+                editField.appendChild(editdueDate);
+
+
+
+                let editTaskPriority = document.createElement('select');
+                editTaskPriority.setAttribute('id', 'edit-priority-select');
+                editTaskPriority.classList.add('input-field');
+                for (let i = 0; i < priorityList.length; i++) {
+                    let option = document.createElement('option');
+                    option.value = priorityList[i];
+                    option.text = 'Priority: ' + priorityList[i];
+                    editTaskPriority.appendChild(option);
+                }
+                editField.appendChild(editTaskPriority);
+
+                let editTaskProject = document.createElement('select');
+                editTaskProject.setAttribute('id', 'edit-task-project');
+                editTaskProject.classList.add('input-field');
+                for (let i = 0; i < projects.length; i++) {
+                    let option = document.createElement('option');
+                    option.value = projects[i].title;
+                    option.text = 'Project: ' + projects[i].title;
+                    editTaskProject.appendChild(option);
+                }
+                editField.appendChild(editTaskProject);
+
+                let editTaskSubmit = document.createElement('button');
+                editTaskSubmit.setAttribute('id', 'edit-task-submit');
+                editTaskSubmit.classList.add('input-field');
+                editTaskSubmit.setAttribute('type', 'button');
+                editTaskSubmit.textContent = 'Edit this Task';
+                editField.appendChild(editTaskSubmit);
+
+                editTaskSubmit.addEventListener('click', (e) => {
+                    if (e.target.id === 'edit-task-submit') {
+                        let title = editTitle.value.trim();
+                        let description = editDescription.value.trim();
+                        let dueDate = editdueDate.value;
+                        let priority = editTaskPriority.value;
+                        let project = editTaskProject.value;
+
+                        if (title == '' || title == editTitle.defaultValue) {
+                            console.log('bad title');
+                            return;
+                        }
+                        if (description == '' || description == editDescription.defaultValue) {
+                            console.log('bad task description');
+                            return;
+                        }
+
+                        tasks[i].editTask(title, description, dueDate, priority, project);
+                        renderDisplay();
+                    }
+                })
+            })
         }
     }
 

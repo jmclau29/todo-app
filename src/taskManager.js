@@ -17,6 +17,14 @@ export class Task {
     addTaskToTasks() {
         tasks.push(this);
     }
+
+    editTask(editedTitle, editedDescription, editeddueDate, editedPriority, editedProject) {
+        this.title = editedTitle;
+        this.description = editedDescription;
+        this.dueDate = editeddueDate;
+        this.priority = editedPriority;
+        this.project = editedProject;
+    }
 }
 
 export const tasks = [];
