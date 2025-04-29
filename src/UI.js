@@ -39,7 +39,13 @@ export const interfaceManager = () => {
                             projects[i].removeProject();
                         }
                     }
+                    for (let i = 0; i < tasks.length; i++) {
+                        if (e.target.parentElement.id === tasks[i].project) {
+                            tasks[i].project = projects[0].title;
+                        }
+                    }
                     renderNavbar();
+                    renderDisplay();
                 }
             })
 
