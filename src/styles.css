@@ -124,6 +124,7 @@ button.project-nav-button,
 
 .input-field {
   margin: 5px;
+  font-size: 1rem;
 }
 
 #task-list-container {
@@ -152,6 +153,15 @@ button.project-nav-button,
 .content-div > p {
   font-size: 1rem;
   font-weight: 100;
+  font-style: normal;
+}
+
+.content-div > button {
+  font-style: normal;
+  font-size: 1rem;
+}
+
+.input-field {
   font-style: normal;
 }
 
