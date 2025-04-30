@@ -12,7 +12,10 @@ console.log(tasks);
 
 
 //hardcoded stuff for testing.
-const newTask = new Task('Buy flowers', 'Buy flowers for my wife.');
-newTask.addTaskToTasks();
+for (let i = 0; i < 5; i++) {
+    const newTask = new Task(`${i}`, 'Buy flowers for my wife.');
+    newTask.addTaskToTasks();
+}
+
 interfaceManager().renderDisplay();
 interfaceManager().renderNavbar();

@@ -268,6 +268,13 @@ export const interfaceManager = () => {
             taskChecker.classList.add('task-checkbox');
             taskItem.appendChild(taskChecker);
 
+            taskChecker.addEventListener('change', () => {
+                if (taskChecker.checked) {
+                    tasks[i].toggleComplete();
+                    console.log(tasks[i]);
+                }
+            })
+
             let taskContent = document.createElement('div');
             taskContent.classList.add('content-div', 'content-hidden');
             taskItem.appendChild(taskContent);
