@@ -249,6 +249,7 @@ export const interfaceManager = () => {
         // START HERE
         //change the display for the task to make it an expandable box, which can manipulate the title, description, duedate, priority, and project
         for (let i = 0; i < value.length; i++) {
+            
             let taskItem = document.createElement('li');
             taskItem.classList.add('task-item');
             if (value[i].dueDate) {
@@ -261,6 +262,11 @@ export const interfaceManager = () => {
                 taskItem.textContent = `${value[i].title}`;
             }
             taskListContainer.appendChild(taskItem);
+
+            let taskChecker = document.createElement('input');
+            taskChecker.setAttribute('type', 'checkbox');
+            taskChecker.classList.add('task-checkbox');
+            taskItem.appendChild(taskChecker);
 
             let taskContent = document.createElement('div');
             taskContent.classList.add('content-div', 'content-hidden');
@@ -291,6 +297,19 @@ export const interfaceManager = () => {
 
             editButton.addEventListener('click', (e) => {
                 editButton.remove();
+                
+                let stopEditingButton = document.createElement('button');
+                stopEditingButton.setAttribute('id', 'stop-editing-button');
+                stopEditingButton.textContent = 'Stop Editing';
+                taskContent.appendChild(stopEditingButton);
+
+                stopEditingButton.addEventListener('click', () => {
+                    if (e.target.id = 'stop-editing-button') {
+                        stopEditingButton.remove();
+                        editField.remove();
+                        taskContent.appendChild(editButton);
+                    }
+                })
 
                 let editField = document.createElement('div');
                 editField.id = 'edit-field';
