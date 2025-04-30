@@ -143,6 +143,15 @@ button.project-nav-button,
   border-radius: 10px;
   padding: 10px;
   margin: 5px;
+  max-width: 70rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr;
+}
+
+.task-checkbox {
+  margin-left: auto;
+  margin-right: 1rem;
 }
 
 .task-item:hover {
@@ -166,6 +175,7 @@ button.project-nav-button,
 }
 
 .content-div {
+  grid-column: 1 / 3;
   display: block;
   margin-left: 1rem;
   background-color: #ccc;
