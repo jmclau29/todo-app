@@ -245,11 +245,61 @@ export const interfaceManager = () => {
         const taskListContainer = document.createElement('ul');
         taskListContainer.setAttribute('id', 'task-list-container');
         display.appendChild(taskListContainer);
+        const completedTaskContainer = document.createElement('ul');
+        completedTaskContainer.setAttribute('id', 'completed-task-container');
+        display.appendChild(completedTaskContainer);
 
-        // START HERE
-        //change the display for the task to make it an expandable box, which can manipulate the title, description, duedate, priority, and project
+        //for completed tasks
         for (let i = 0; i < value.length; i++) {
-            
+            if (value[i].isComplete === false) {
+                continue;
+            }
+
+            let completedTask = document.createElement('li');
+            completedTask.classList.add('completed-task-item');
+            if (value[i].dueDate) {
+                completedTask.textContent = `${value[i].title}, due ${value[i].dueDate}`;
+                // below meant for editing overdue task's with a red dueDate, continue later
+                /*  if (value[i].dueDate > today) {
+                     taskItem.classList.add('overdue');
+                 } */
+            } else {
+                completedTask.textContent = `${value[i].title}`;
+            }
+            completedTaskContainer.appendChild(completedTask);
+
+            let taskChecker = document.createElement('input');
+            taskChecker.setAttribute('type', 'checkbox');
+            taskChecker.classList.add('task-checkbox');
+            taskChecker.checked = true;
+            completedTask.appendChild(taskChecker);
+
+            taskChecker.addEventListener('change', () => {
+                tasks[i].toggleComplete();
+                console.log(tasks[i].isComplete);
+                renderDisplay();
+            })
+
+            let taskContent = document.createElement('div');
+            taskContent.classList.add('content-div', 'content-hidden');
+            completedTask.appendChild(taskContent);
+
+            let taskDescription = document.createElement('p');
+            taskDescription.textContent = `Description: ${value[i].description}`;
+            taskContent.appendChild(taskDescription);
+            let taskPriority = document.createElement('p');
+            taskPriority.textContent = `Priority: ${value[i].priority}`;
+            taskContent.appendChild(taskPriority);
+            let taskProject = document.createElement('p');
+            taskProject.textContent = `Project: ${value[i].project}`;
+            taskContent.appendChild(taskProject);
+        }
+        
+        for (let i = 0; i < value.length; i++) {
+
+            if (value[i].isComplete === true) {
+                continue; //skips the current loop iteration if the task is complete.
+            }
             let taskItem = document.createElement('li');
             taskItem.classList.add('task-item');
             if (value[i].dueDate) {
@@ -269,10 +319,9 @@ export const interfaceManager = () => {
             taskItem.appendChild(taskChecker);
 
             taskChecker.addEventListener('change', () => {
-                if (taskChecker.checked) {
-                    tasks[i].toggleComplete();
-                    console.log(tasks[i]);
-                }
+                tasks[i].toggleComplete();
+                console.log(tasks[i].isComplete);
+                renderDisplay();
             })
 
             let taskContent = document.createElement('div');
@@ -304,7 +353,7 @@ export const interfaceManager = () => {
 
             editButton.addEventListener('click', (e) => {
                 editButton.remove();
-                
+
                 let stopEditingButton = document.createElement('button');
                 stopEditingButton.setAttribute('id', 'stop-editing-button');
                 stopEditingButton.textContent = 'Stop Editing';

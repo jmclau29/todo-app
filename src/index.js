@@ -13,7 +13,7 @@ console.log(tasks);
 
 //hardcoded stuff for testing.
 for (let i = 0; i < 5; i++) {
-    const newTask = new Task(`${i}`, 'Buy flowers for my wife.');
+    const newTask = new Task(`Task Number ${i+1}`, 'Buy flowers for my wife.');
     newTask.addTaskToTasks();
 }
 
