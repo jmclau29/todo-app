@@ -89,6 +89,12 @@ export const interfaceManager = () => {
                 newProjectSubmit.textContent = 'Submit New Project';
                 projectNavList.appendChild(newProjectSubmit);
 
+                let newProjectCancel = document.createElement('button');
+                newProjectCancel.setAttribute('type', 'button');
+                newProjectCancel.setAttribute('id', 'project-cancel');
+                newProjectCancel.textContent = 'Cancel';
+                projectNavList.appendChild(newProjectCancel);
+
                 newProjectInput.addEventListener('keypress', (e) => {
                     if (e.key === "Enter") {
                         newProjectSubmit.click();
@@ -107,6 +113,10 @@ export const interfaceManager = () => {
                         renderNavbar();
                         console.log(projects);
                     }
+                })
+
+                newProjectCancel.addEventListener('click', (e) => {
+                    renderNavbar();
                 })
             }
         });
@@ -245,9 +255,13 @@ export const interfaceManager = () => {
         const taskListContainer = document.createElement('ul');
         taskListContainer.setAttribute('id', 'task-list-container');
         display.appendChild(taskListContainer);
+        const completedTitle = document.createElement('h1');
+        completedTitle.textContent = 'Completed tasks';
+        display.appendChild(completedTitle);
         const completedTaskContainer = document.createElement('ul');
         completedTaskContainer.setAttribute('id', 'completed-task-container');
         display.appendChild(completedTaskContainer);
+        
 
         //for completed tasks
         for (let i = 0; i < value.length; i++) {
