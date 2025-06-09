@@ -1,6 +1,6 @@
 import "./styles.css";
 import { projects, Project } from "./projectManager";
-import { Task, tasks } from "./taskManager";
+import { Task, tasks, saveTasks, restoreTasks } from "./taskManager";
 import { initialDOMLoad } from "./initialDOMLoad";
 import { interfaceManager } from "./UI";
 
@@ -13,9 +13,11 @@ console.log(tasks);
 
 //hardcoded stuff for testing.
 for (let i = 0; i < 5; i++) {
-    const newTask = new Task(`Task Number ${i+1}`, 'Buy flowers for my wife.');
+    const newTask = new Task(`Task Number ${i + 1}`, 'Buy flowers for my wife.');
     newTask.addTaskToTasks();
 }
 
 interfaceManager().renderDisplay();
 interfaceManager().renderNavbar();
+
+//localstorage testing
