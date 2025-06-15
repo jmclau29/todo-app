@@ -1,13 +1,13 @@
 
 
 export class Task {
-    constructor(title, description, dueDate, priority = 'Medium', project = 'Home') {
+    constructor(title, description, dueDate, priority = 'Medium', project = 'Home', isComplete = false) {
         this.title = title;
         this.description = description;
         this.dueDate = dueDate;
         this.priority = priority;
         this.project = project;
-        this.isComplete = false;
+        this.isComplete = isComplete;
     }
 
     toggleComplete() {
@@ -37,7 +37,7 @@ export const restoreTasks = () => {
     console.log(storedTasks.length);
     for (let i = 0; i < storedTasks.length; i++) {
         let storedTask = storedTasks[i];
-        let restoredTask = new Task(storedTask.title, storedTask.description, storedTask.dueDate, storedTask.priority, storedTask.project);
+        let restoredTask = new Task(storedTask.title, storedTask.description, storedTask.dueDate, storedTask.priority, storedTask.project, storedTask.isComplete);
         restoredTask.addTaskToTasks();
     }
 }

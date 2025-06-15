@@ -1,4 +1,4 @@
-import { Task, tasks, priorityList } from "./taskManager";
+import { Task, tasks, saveTasks, restoreTasks, priorityList } from "./taskManager";
 import { Project, projects } from "./projectManager";
 
 //this UI module handles UI functionality. Basically, DOM manipulation.
@@ -133,6 +133,7 @@ export const interfaceManager = () => {
     //a function to render the display for todos.
     const renderDisplay = (value = tasks) => {
         clearTaskList();
+        restoreTasks();
 
         const displayTitle = document.createElement('h1');
         displayTitle.textContent = 'Tasks';
@@ -245,6 +246,7 @@ export const interfaceManager = () => {
 
                         let newTask = new Task(title, description, dueDate, priority, project);
                         newTask.addTaskToTasks();
+                        saveTasks();
                         console.log(tasks);
                     }
                     renderDisplay();
@@ -261,7 +263,7 @@ export const interfaceManager = () => {
         const completedTaskContainer = document.createElement('ul');
         completedTaskContainer.setAttribute('id', 'completed-task-container');
         display.appendChild(completedTaskContainer);
-        
+
 
         //for completed tasks
         for (let i = 0; i < value.length; i++) {
@@ -290,6 +292,7 @@ export const interfaceManager = () => {
 
             taskChecker.addEventListener('change', () => {
                 tasks[i].toggleComplete();
+                saveTasks();
                 console.log(tasks[i].isComplete);
                 renderDisplay();
             })
@@ -308,7 +311,7 @@ export const interfaceManager = () => {
             taskProject.textContent = `Project: ${value[i].project}`;
             taskContent.appendChild(taskProject);
         }
-        
+
         for (let i = 0; i < value.length; i++) {
 
             if (value[i].isComplete === true) {
@@ -334,6 +337,7 @@ export const interfaceManager = () => {
 
             taskChecker.addEventListener('change', () => {
                 tasks[i].toggleComplete();
+                saveTasks();
                 console.log(tasks[i].isComplete);
                 renderDisplay();
             })
