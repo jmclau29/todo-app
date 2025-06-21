@@ -1,4 +1,4 @@
-import { Task, tasks, saveTasks, restoreTasks, priorityList } from "./taskManager";
+import { Task, tasks, saveTasks, priorityList, loadTasks } from "./taskManager";
 import { Project, projects } from "./projectManager";
 
 //this UI module handles UI functionality. Basically, DOM manipulation.
@@ -133,7 +133,7 @@ export const interfaceManager = () => {
     //a function to render the display for todos.
     const renderDisplay = (value = tasks) => {
         clearTaskList();
-        restoreTasks();
+        //loadTasks();
 
         const displayTitle = document.createElement('h1');
         displayTitle.textContent = 'Tasks';
@@ -265,6 +265,7 @@ export const interfaceManager = () => {
         display.appendChild(completedTaskContainer);
 
 
+        // #Completion Verification Section
         //for completed tasks
         for (let i = 0; i < value.length; i++) {
             if (value[i].isComplete === false) {

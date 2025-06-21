@@ -31,16 +31,19 @@ export const saveTasks = () => {
     localStorage.setItem('tasksStorage', JSON.stringify(tasks));
 }
 
-export const restoreTasks = () => {
-    let storedTasks = JSON.parse(localStorage.getItem('tasksStorage'));
-    tasks.length = 0;
-    console.log(storedTasks.length);
-    for (let i = 0; i < storedTasks.length; i++) {
-        let storedTask = storedTasks[i];
-        let restoredTask = new Task(storedTask.title, storedTask.description, storedTask.dueDate, storedTask.priority, storedTask.project, storedTask.isComplete);
-        restoredTask.addTaskToTasks();
+export const loadTasks = () => {
+    if (localStorage.getItem('tasksStorage') === null) {
+        return;
     }
-}
+    tasks.length = 0;
+    let loadedTasksString = localStorage.getItem('tasksStorage');
+    let loadedTasks = JSON.parse(loadedTasksString);
+    
+    for (let i = 0; i < loadedTasks.length; i++) {
+        loadedTasks[i] = new Task(loadedTasks[i].title, loadedTasks[i].description, loadedTasks[i].dueDate, loadedTasks[i].priority, loadedTasks[i].project, loadTasks.isComplete);
+        loadedTasks[i].addTaskToTasks();
+    }
+    }
 
 export const tasks = [];
 export const priorityList = ['Low', 'Medium', 'High'];
