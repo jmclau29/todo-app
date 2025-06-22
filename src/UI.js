@@ -133,7 +133,7 @@ export const interfaceManager = () => {
     //a function to render the display for todos.
     const renderDisplay = (value = tasks) => {
         clearTaskList();
-        //loadTasks();
+        loadTasks();
 
         const displayTitle = document.createElement('h1');
         displayTitle.textContent = 'Tasks';
