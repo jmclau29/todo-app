@@ -1,5 +1,5 @@
 import { Task, tasks, saveTasks, priorityList, loadTasks } from "./taskManager";
-import { Project, projects } from "./projectManager";
+import { loadProjects, Project, projects, saveProjects } from "./projectManager";
 
 //this UI module handles UI functionality. Basically, DOM manipulation.
 
@@ -11,6 +11,8 @@ export const interfaceManager = () => {
     //renders the navbar in the DOM.
     const renderNavbar = () => {
         clearNavList();
+
+        loadProjects();
         const projectNavTitle = document.createElement('h1');
         projectNavTitle.textContent = 'Projects';
         projectNav.appendChild(projectNavTitle);
@@ -37,6 +39,7 @@ export const interfaceManager = () => {
                     for (let i = 0; i < projects.length; i++) {
                         if (e.target.parentElement.id === projects[i].title) {
                             projects[i].removeProject();
+                            saveProjects();
                         }
                     }
                     for (let i = 0; i < tasks.length; i++) {
@@ -110,6 +113,7 @@ export const interfaceManager = () => {
                     if (e.target.id === 'project-submit') {
                         let newProject = new Project(`${newProjectInput.value.trim()}`);
                         newProject.addProject();
+                        saveProjects();
                         renderNavbar();
                         console.log(projects);
                     }

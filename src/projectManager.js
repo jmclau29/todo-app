@@ -30,6 +30,25 @@ export class Project {
     }
 }
 
+export const saveProjects = () => {
+    localStorage.setItem('projectsStorage', JSON.stringify(projects));
+    console.log(localStorage.getItem('projectsStorage'));
+}
+
+export const loadProjects = () => {
+    if (localStorage.getItem('projectsStorage') === null) {
+        return;
+    }
+    projects.length = 1;
+    let loadedProjectsString = localStorage.getItem('projectsStorage');
+    let loadedProjects = JSON.parse(loadedProjectsString);
+
+    for (let i = 1; i < loadedProjects.length; i++) {
+        loadedProjects[i] = new Project(loadedProjects[i].title);
+        loadedProjects[i].addProject();
+    }
+
+}
 
 let initialProject = new Project('Home');
 projects.push(initialProject);

@@ -1,6 +1,6 @@
 import "./styles.css";
-import { projects, Project } from "./projectManager";
-import { Task, tasks, saveTasks, restoreTasks } from "./taskManager";
+import { projects } from "./projectManager";
+import { Task, tasks } from "./taskManager";
 import { initialDOMLoad } from "./initialDOMLoad";
 import { interfaceManager } from "./UI";
 
