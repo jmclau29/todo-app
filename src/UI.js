@@ -466,6 +466,7 @@ export const interfaceManager = () => {
 
                 editTaskSubmit.addEventListener('click', (e) => {
                     if (e.target.id === 'edit-task-submit') {
+                        console.log('editing task...');
                         let title = editTitle.value.trim();
                         let description = editDescription.value.trim();
                         let dueDate = editdueDate.value;
@@ -482,6 +483,7 @@ export const interfaceManager = () => {
                         }
 
                         tasks[i].editTask(title, description, dueDate, priority, project);
+                        saveTasks();
                         renderDisplay();
                     }
                 })
